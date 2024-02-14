@@ -7,16 +7,18 @@
   <script>
     const completed = (response) => {
       const data = JSON.parse(response.target.responseText);
-      document.getElementById('result').innerHTML = `Tipo de Cambio Dolares ${data.TipoCompraDolares}`;
+      document.getElementById('result').innerHTML = `Tipo de Cambio Dolares ${data.exchange}`;
     };
 
     const error = () => console.log(this.responseText);
 
     function getExchange() {
       const ajaxRequest = new XMLHttpRequest(); //AJAX
+      const currency = document.getElementById("countries").value;
+
       ajaxRequest.addEventListener("load", completed);
       ajaxRequest.addEventListener("error", error);
-      ajaxRequest.open("GET", "http://localhost:3001/tipocambio");
+      ajaxRequest.open("GET", `http://localhost:3001/tipocambio?currency=${currency}`);
       ajaxRequest.send();
     }
   </script>
@@ -37,7 +39,10 @@
       const countries = JSON.parse(e.target.responseText);
       let optionsHtml = "";
       countries.forEach(country => {
-        optionsHtml += `<option value="${country.cca3}">${country.name.common}</option>`;
+        if (country.currencies) {
+          const currency = Object.keys(country.currencies)[0];
+          optionsHtml += `<option value="${currency}">${country.name.common}</option>`;
+        }
       });
       document.getElementById("countries").innerHTML = optionsHtml;
     });
