@@ -1,23 +1,24 @@
 const express = require('express');
 const app = express();
+
+// Had to confirm the port
+const PORT = process.env.PORT || 3000;
+
 // database connection
 const mongoose = require("mongoose");
-const db = mongoose.connect("mongodb://127.0.0.1:27017/teachers", {
+const db = mongoose.connect("mongodb://127.0.0.1:27017/careers", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
 });
 
-const {
-  teacherPatch,
-  teacherPost,
-  teacherGet,
-  teacherDelete
-} = require("./controllers/teacherController.js");
 
 const {
-  coursePost, courseGet
-} = require("./controllers/courseController.js");
+  coursePut,
+  coursePost,
+  courseGet,
+  courseDelete
+} = require("./controllers/careerController.js");
 
 // parser for the request body (required for the POST and PUT methods)
 const bodyParser = require("body-parser");
@@ -31,15 +32,13 @@ app.use(cors({
 }));
 
 
-// listen to the task request
-app.get("/api/teachers", teacherGet);
-app.post("/api/teachers", teacherPost);
-app.patch("/api/teachers", teacherPatch);
-app.put("/api/teachers", teacherPatch);
-app.delete("/api/teachers", teacherDelete);
-
 // course
 app.get("/api/courses", courseGet);
 app.post("/api/courses", coursePost);
+app.get("/api/courses", coursePut);
+app.post("/api/courses", courseDelete);
 
-app.listen(3001, () => console.log(`Example app listening on port 3001!`))
+// Start the server
+app.listen(PORT,  () => {
+    console.log(`Server succesfully running on port ${PORT}`);
+});

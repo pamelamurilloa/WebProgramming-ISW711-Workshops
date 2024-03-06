@@ -4,6 +4,7 @@
   "description": "Semana 2 del curso de ISW-711",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

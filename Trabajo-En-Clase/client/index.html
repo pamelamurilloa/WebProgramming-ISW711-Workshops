@@ -4,21 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 3 - Consume API</title>
+  <title>Classwork Week 5 - Consume API</title>
   <script>
 
     const error = (e) => console.log(e.target.responseText);
 
-    function saveTeacher() {
+    function saveCareer() {
       const ajaxRequest = new XMLHttpRequest();
       ajaxRequest.addEventListener("load", completed);
       ajaxRequest.addEventListener("error", error);
-      ajaxRequest.open("POST", "http://localhost:3000/api/teachers");
+      ajaxRequest.open("POST", "http://localhost:3000/api/careers");
       ajaxRequest.setRequestHeader("Content-Type", "application/json");
 
       const data = {
-        'first_name': document.getElementById('first_name').value,
-        'last_name': document.getElementById('last_name').value
+        'name': document.getElementById('name').value,
+        'code': document.getElementById('code').value,
+        'description': document.getElementById('description').value,
+        
       };
       ajaxRequest.send(JSON.stringify(data));
     }
@@ -27,7 +29,7 @@
      *  Get on or all
      */
     function get(id) {
-      let url = "http://localhost:3000/api/teachers";
+      let url = "http://localhost:3000/api/careers";
       if(id) {
         url = `${url}?id=${id}`;
       }
@@ -46,72 +48,70 @@
       ajaxRequest.send();
     }
 
+    // function login() {
+    //   const ajaxRequest = new XMLHttpRequest();
+    //   ajaxRequest.addEventListener("load", completed);
+    //   ajaxRequest.addEventListener("error", error);
+    //   ajaxRequest.open("POST", "http://localhost:3000/login");
+    //   ajaxRequest.setRequestHeader("Content-Type", "application/json");
 
-    function login() {
-      const ajaxRequest = new XMLHttpRequest();
-      ajaxRequest.addEventListener("load", completed);
-      ajaxRequest.addEventListener("error", error);
-      ajaxRequest.open("POST", "http://localhost:3000/login");
-      ajaxRequest.setRequestHeader("Content-Type", "application/json");
-
-      const data = {
-        'username': document.getElementById('title').value,
-        'password': document.getElementById('description').value
-      };
-      ajaxRequest.send(JSON.stringify(data));
-    }
+    //   const data = {
+    //     'username': document.getElementById('title').value,
+    //     'password': document.getElementById('description').value
+    //   };
+    //   ajaxRequest.send(JSON.stringify(data));
+    // }
 
     /**
-     * Generates an HTML table with teacher
+     * Generates an HTML table with career
      */
-     function renderTeachers(teachers) {
+     function renderCareers(careers) {
       let html = "<table>";
-      teachers.forEach(teacher => {
-        html += `<tr><td>${teacher.first_name}</td><td><button onclick="get('${teacher._id}')"> Edit </button> </td></tr>`;
+      careers.forEach(career => {
+        html += `<tr>
+          <td>${career.name}</td>
+            <td>${career.code}</td>
+            <td>${career.description}</td>
+            <td><button onclick="get('${career._id}')"> Edit </button> </td>
+          </tr>`;
       });
       html += '</table>';
 
-      document.getElementById('tableList').innerHTML = html;
-    }
-
-    /**
-     * Generates an HTML table with teacher
-     */
-    function renderTeacher(teacher) {
-      let html = "<table>";
-      html += `<tr><td>${teacher.first_name}</td><td><button onclick="get('${teacher._id}')"> Edit </button> </td></tr>`;
-      html += '</table>';
-
-      document.getElementById('tableList').innerHTML = html;
+      document.getElementById('coursesList').innerHTML = html;
     }
 
     get();
   </script>
 </head>
 
-<body>
   <div class="container">
     <form>
       <div class="form-group row">
-        <label for="inputName" class="col-sm-1-12 col-form-label">First Name</label>
+        <label for="courseName" class="col-sm-1-12 col-form-label">Name</label>
         <div class="col-sm-1-12">
-          <input type="text" class="form-control" name="first_name" id="first_name" placeholder="">
+          <input type="text" class="form-control" name="courseName" id="courseName" placeholder="">
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputName" class="col-sm-1-12 col-form-label">Last Name</label>
+        <label for="code" class="col-sm-1-12 col-form-label">Code</label>
         <div class="col-sm-1-12">
-          <input type="text" class="form-control" name="last_name" id="last_name" placeholder="">
+          <input type="text" class="form-control" name="code" id="code" placeholder="">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-sm-1-12 col-form-label">Description</label>
+        <div class="col-sm-1-12">
+          <input type="text" class="form-control" name="description" id="description" placeholder="">
         </div>
       </div>
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="button" class="btn btn-primary" id="saveButton" onclick="saveTeacher()">Save</button>
+          <button type="button" class="btn btn-primary" id="saveButton" onclick="saveCareer()">Save</button>
         </div>
       </div>
     </form>
 
-    <div id="tableList"></div>
+    <div id="coursesList"></div>
   </div>
 </body>
 
