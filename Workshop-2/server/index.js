@@ -25,7 +25,7 @@ app.get('/tipocambio', async function (req, res) {
   let currency = req.query.currency;
 
   try {
-    let exchange = await fetch(`https://api.apilayer.com/exchangerates_data/convert?to=USD&from=${currency}&amount=1`, requestOptions);
+    let exchange = await fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${currency}&from=USD&amount=1`, requestOptions);
     exchange = JSON.parse(await exchange.text());
     
     console.log(exchange,typeof exchange);
