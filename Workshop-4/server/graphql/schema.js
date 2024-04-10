@@ -1,10 +1,8 @@
 const { buildSchema } = require('graphql');
 exports.graphQLschema = buildSchema(`
-  type Query {
+  type Courses {
     getAllCourses: [Course]
     searchCourses(name: String!): [Course]
-    hello: String
-    version: String
   }
 
   type Course {

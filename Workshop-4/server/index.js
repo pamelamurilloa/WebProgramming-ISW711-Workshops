@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const graphqlHTTP = require('express-graphql');
-const { graphQLschema } = require('./graphql-schema.js');
+const { graphQLschema } = require('./graphql/schema.js');
 
 const express = require('express');
 const app = express();
@@ -30,8 +30,6 @@ const teacherModel = require('./models/teacherModel.js');
 const graphqlResolvers = {
   getAllCourses: courseGetAll,
   searchCourses: (params) => courseSearch(params),
-  hello: function() { return "Hola Mundo"},
-  version: function() {return "1.0"}
 };
 
 // Middlewares

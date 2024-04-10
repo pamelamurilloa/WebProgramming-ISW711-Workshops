@@ -12,38 +12,35 @@
   <div class="container">
     <form>
       <div class="form-group row">
-        <label for="inputName" class="col-sm-1-12 col-form-label">First Name</label>
+        <label for="name" class="col-sm-1-12 col-form-label">Course Name</label>
         <div class="col-sm-1-12">
-          <input type="text" class="form-control" name="first_name" id="first_name" placeholder="">
+          <input type="text" class="form-control" name="name" id="name" placeholder="">
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputName" class="col-sm-1-12 col-form-label">Last Name</label>
+        <label for="credits" class="col-sm-1-12 col-form-label">Credits</label>
         <div class="col-sm-1-12">
-          <input type="text" class="form-control" name="last_name" id="last_name" placeholder="">
+          <input type="number" class="form-control" name="credits" id="credits" placeholder="">
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputName" class="col-sm-1-12 col-form-label">Cedula</label>
+        <label for="teacher" class="col-sm-1-12 col-form-label">Teacher ID</label>
         <div class="col-sm-1-12">
-          <input type="text" class="form-control" name="cedula" id="cedula" placeholder="">
+          <input type="number" class="form-control" name="teacher" id="teacher" placeholder="">
         </div>
       </div>
-      <div class="form-group row">
-        <label for="inputName" class="col-sm-1-12 col-form-label">Age</label>
-        <div class="col-sm-1-12">
-          <input type="number" class="form-control" name="age" id="age"ope>
-        </div>
-      </div>
+
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="button" class="btn btn-primary" id="saveButton" onclick="saveTeacher()">Save</button>
+          <button type="button" class="btn btn-primary" id="saveButton" onclick="saveCourse()">Save</button>
         </div>
       </div>
     </form>
 
     <div id="tableList"></div>
   </div>
+
+  <script src="app.js"></script>
 </body>
 
 </html>
