@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .button-container {
+    text-align: center;
+  }
+
+  .button-container a {
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+    background: lightgrey;
+    border-radius: 15px;
+    font-size: x-large;
+  }
